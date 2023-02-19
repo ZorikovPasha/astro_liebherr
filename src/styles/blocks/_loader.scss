@@ -1,0 +1,24 @@
+.loader {
+  position: fixed;
+  z-index: 120;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(#fff, .6);
+}
+
+.dots {
+  width:12px;
+  height:12px;
+  margin: 0 auto;
+  background: #000000;
+  border-radius: 50%;
+  box-shadow: 20px 0 #00000022,-20px 0 #000000;
+  animation:d5 1s infinite linear alternate;
+}
+@keyframes d5 {
+    0% {box-shadow: 20px 0 #000000,-20px 0 #00000022;background: #000000}
+    33%{box-shadow: 20px 0 #000000,-20px 0 #00000022;background: #00000022}
+    66%{box-shadow: 20px 0 #00000022,-20px 0 #000000;background: #00000022}
+}

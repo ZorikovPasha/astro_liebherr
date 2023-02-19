@@ -1,0 +1,32 @@
+---
+import Wrapper from '../../layout/wrapper.astro'
+import { publicApi } from '../../api'
+import BreadCrumbs from '../../components/common/Breadcrumbs.astro'
+import { ROUTES } from '../../utils/const'
+import Items from '../../components/pages/articles'
+
+const breadCrumbs = [
+    { id: 1, link: ROUTES.HOME, text: 'Главная' },
+    { id: 2, link: '', text: 'Статьи' },
+  ]
+const { items, hasMore } = await publicApi.getArticles(1)
+---
+
+<Wrapper 
+  title="Блог" 
+  description="Блог строительной компании Liebherr"
+>
+  <>
+    <BreadCrumbs items={breadCrumbs} />
+
+    <section class="blog">
+      <div class="container">
+        <h1 class="blog__title">СТАТЬИ О СПЕЦТЕХНИКЕ</h1>
+        <Items 
+          items={items} 
+          hasMore={hasMore} 
+        />
+      </div>
+    </section>
+  </>
+</Wrapper>

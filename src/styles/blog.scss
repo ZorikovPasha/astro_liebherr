@@ -1,0 +1,128 @@
+.blog {
+  padding-bottom: 100px;
+
+  // .blog__title
+
+  &__title {
+    @extend %h1;
+    margin-bottom: 53px;
+  }
+
+  // .blog__items
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+
+    &::after{
+      @extend %banner;
+
+      content: "Eurocran";
+      bottom: 27%;
+      left: -63%;
+      width: 1218px;
+    }
+
+    &::before{
+      @extend %banner;
+
+      content: "Liebherr";
+      top: 20%;
+      right: -57%;
+      width: 1094px;
+    }
+  }
+
+  &__item-inner {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__btn-wrapper {
+    @extend %btn-wrapper;
+  }
+
+  &__btn {
+    @extend %link-btn;
+    padding: 12px 58px 12px 47px;
+  }
+
+}
+
+.item-blog {
+  max-width: 370px;
+  height: 100%;
+  background-color: #fff;
+  transition: all .3s;
+
+  &:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  // .item-blog__images
+
+  &__images {
+    margin-bottom: 16px;
+  }
+
+  &__box {
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 0 20px 20px 30px;
+  }
+
+  // .item-blog__title
+
+  &__title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 20px;
+  }
+
+  // .item-blog__text
+
+  &__text {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  // .item-blog__btn
+
+  &__btn {
+    margin-top: auto;
+    justify-self: flex-end;
+    align-self: flex-start;
+    display: inline-block;
+    padding: 12px 62px;
+  }
+}
+
+@media (max-width:1220px) {
+  .blog__items::before,
+  .blog__items::after {
+    position: static;
+    display: none;
+  }
+}
+
+@media (max-width:992px) {
+  .blog__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .blog__items .item-blog {
+    max-width: none;
+  }
+}
+
+
+@media (max-width:600px) {
+  .blog__items {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .blog__items .item-blog:nth-child(n + 9) {
+    display: none;
+  }
+}

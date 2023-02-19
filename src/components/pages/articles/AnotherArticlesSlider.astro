@@ -1,0 +1,59 @@
+---
+import ArticleCard from '../../../components/pages/blog/ArticleCard'
+import { publicApi } from '../../../api'
+import { ArticleType } from '../../../types/dataTypes'
+import { ROUTES } from '../../../utils/const'
+import AppSlider from '../../common/AppSlider'
+
+const { currentArticle } = Astro.props
+let articles: ArticleType[] = []
+
+publicApi.getArticles(1).then((data) => 
+  articles = data.items.filter((article) => article.id !== currentArticle)
+).catch(() => {})
+
+const settings = {
+    row: 1,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    dots: false,
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 861,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  }
+---
+
+<div class="article__another-ones another-ones">
+  <div class="container">
+    <h2 class="another-ones__title">Другие статьи</h2>
+    <AppSlider 
+      rootElClass="another-ones__slider" 
+      settings={settings}
+      count={articles.length}
+    >
+      {articles?.map(({ id, title, subtitle, preview }) => 
+        <ArticleCard 
+          preview={preview} 
+          title={title} 
+          subtitle={subtitle} 
+          id={id} 
+        />
+      )}
+    </AppSlider>
+    <div class="another-ones__btn-wrapper">
+      <a 
+        class="another-ones__btn" 
+        href={ROUTES.ARTICLES}
+      >
+        Все статьи
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.error {
+  padding: 50px 0;
+
+  &__images {
+    justify-content: center;
+  }
+
+  &__img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  &__text {
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}

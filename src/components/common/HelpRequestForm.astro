@@ -1,0 +1,52 @@
+---
+import { AppForm } from './app-form'
+
+  const fields = {
+    fields: {
+      name: {
+        value: '',
+        isValid: false,
+        inputClass: 'help__form-input',
+        type: 'text',
+        placeholder: 'Имя',
+        labelClass: 'help__form-label flex',
+        blockClass: '',
+        tag: 'input',
+        errorMessage: 'Поле не заполнено',
+        validateFn: (str: string) => str.length > 0,
+      },
+      phone: {
+        value: '',
+        isValid: false,
+        inputClass: 'help__form-input',
+        type: 'tel',
+        mask: '+79999999999',
+        placeholder: '+7__________',
+        labelClass: 'help__form-label flex',
+        blockClass: '',
+        tag: 'input',
+        errorMessage: 'Поле заполнено некорректно',
+        validateFn: (str: string) => !str.includes('_'),
+      },
+    },
+    isAgree: false,
+  }
+---
+
+<div class="help rel before after">
+  <div class="help__container">
+    <div class="container">
+      <h2 class="help__title">Нужна помощь в подборе?</h2>
+      <AppForm 
+        formClass="help__form" 
+        fields={fields} 
+        buttonClass="help__form-btn btn" 
+        buttonText="Получить консультацию" 
+        agreeLabelClass="help__form-label help__form-label--margin-top flex" 
+      />
+    </div>
+    <div class="help__images">
+      <img src="/static/images/form-bg.png" />
+    </div>
+  </div>
+</div>

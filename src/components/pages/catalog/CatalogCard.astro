@@ -1,0 +1,42 @@
+---
+import { ROUTES } from '../../../utils/const'
+
+interface Props {
+  id: number
+  name: string
+  imgSrc: string
+  liftingCapacity: number
+  arrowLength: number
+  rootElClass?: string
+}
+
+const { id, imgSrc, name, liftingCapacity, arrowLength, rootElClass = '' } = Astro.props
+
+---
+
+<div class={`product-item flex ${rootElClass}`}>
+  <div class="product-item__body flex">
+    <div class="product-item__images">
+      <img src={imgSrc} width="100%" class="product-item__img" height="100%" alt="product" />
+    </div>
+    <div class="product-item__title-box rel after before">
+      <a class="product-item__title product-item__title--big" href={ROUTES.CATALOG + id}>
+        {name}
+      </a>
+    </div>
+    <div class="product-item__info flex">
+      <div class="product-item__box">
+        <div class="product-item__text">Грузоподъемность:</div>
+        <div class="product-item__text">{liftingCapacity}</div>
+        <div class="product-item__text">Длина стрелы:</div>
+        <div class="product-item__text">{arrowLength}</div>
+      </div>
+      <a class="product-item__link rel after" href={ROUTES.CATALOG + id}>
+        Все характеристики
+      </a>
+      <a class="product-item__link rel after" href={ROUTES.CONTACTS}>
+        Арендовать
+      </a>
+    </div>
+  </div>
+</div>

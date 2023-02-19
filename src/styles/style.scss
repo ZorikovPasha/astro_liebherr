@@ -1,0 +1,36 @@
+@import '~rc-slider/assets/index.css';
+@import "~slick-carousel/slick/slick.css"; 
+
+@font-face {
+  font-family: 'FuturaPt-Bold';
+  src: url('../fonts/futura-pt-bold.woff2') format('woff2'),
+  url('../fonts/futura-pt-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import "_null.scss";
+@import "_global.scss";
+
+@import "./blocks/_header.scss";
+@import "./blocks/_footer.scss";
+@import "./blocks/_mob-menu.scss";
+@import "./blocks/_floating-field.scss";
+@import "./blocks/_loader.scss";
+@import "./blocks/error.scss";
+@import "./blocks/popup.scss";
+@import "./blocks/popup-message.scss";
+
+@import "home.scss";
+@import "catalog.scss";
+@import "product.scss";
+@import "about.scss";
+@import "objects.scss";
+@import "object.scss";
+@import "blog.scss";
+@import "article.scss";
+@import "contacts.scss";
+
+@import "_animate.scss";
+@import "_media.scss";

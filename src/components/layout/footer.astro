@@ -1,0 +1,94 @@
+---
+import { ROUTES } from '../../utils/const'
+import Button from './footer-button';
+  const footerLists = [
+    [
+      { text: 'О компании', link: ROUTES.ABOUT },
+      { text: 'Услуги', link: ROUTES.CONTACTS },
+      { text: 'Каталог техники', link: ROUTES.CATALOG },
+      { text: 'Аренда кранов', link: ROUTES.ARTICLES },
+      { text: 'Наши работы', link: ROUTES.OBJECTS },
+      { text: 'Прайс-лист', link: ROUTES.ABOUT },
+      { text: 'Контакты', link: ROUTES.CONTACTS },
+    ],
+    [
+      { text: 'Гусеничные краны', link: ROUTES.CATALOG },
+      { text: 'Мобильные краны', link: ROUTES.CATALOG },
+      { text: 'Низеорамные краны', link: ROUTES.CATALOG },
+      { text: 'Модульные платформы', link: ROUTES.CATALOG },
+    ],
+    [
+      { text: 'Аренда гусеничного крана', link: ROUTES.CONTACTS },
+      { text: 'Аренда мобильного крана', link: ROUTES.CONTACTS },
+      { text: 'Аренда башенного крана', link: ROUTES.CONTACTS },
+      { text: 'Перевозка негабаритного груза', link: ROUTES.CONTACTS },
+      { text: 'Разработка ппрк', link: ROUTES.CONTACTS },
+    ],
+  ]
+  const listsTitles = ['Клиентам', 'Техника', 'Услуги']
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner flex jcsb">
+      <div class="footer__column">
+        <div class="footer__logo rel">
+          <img src="/static/images/footer-logo.svg" alt="logo" />
+        </div>
+        <p class="footer__about">Аренда мобильных и гусеничных кранов LIEBHERR</p>
+        <p class="footer__rights">© 2000-2021 Все права защищены</p>
+      </div>
+      {footerLists?.map((arr, idx) => 
+        <div class="footer__column">
+          <p class="footer__column-title">{listsTitles[idx]}</p>
+          <ul class="footer__column-list column-list">
+            {arr.map(({ text, link }) => 
+              <li class="column-list__item">
+                <a 
+                  class="column-list__link" 
+                  href={link}
+                >
+                  {text}
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+      <div class="footer__column">
+        <Button />
+
+        <div class="footer__socials">
+          <div>
+            <img class="footer__social" src="/static/images/social-1.svg" alt="" width={24} height={25} />
+          </div>
+          <div>
+            <img class="footer__social" src="/static/images/social-2.svg" alt="twitter" width={24} height={25} />
+          </div>
+          <div>
+            <img class="footer__social" src="/static/images/social-3.svg" alt="whatsapp" width={24} height={25} />
+          </div>
+          <div>
+            <img class="footer__social" src="/static/images/social-4.svg" alt="vkontacte" width={24} height={25} />
+          </div>
+          <div>
+            <img class="footer__social" src="/static/images/social-5.svg" alt="yandex" width={24} height={25} />
+          </div>
+        </div>
+      </div>
+      <div class="footer__column">
+        <p class="footer__column-title">Контакты</p>
+        <a class="footer__tel" href="tel:+74999299666">
+          +7 (499)929-96-66
+        </a>
+        <a class="footer__tel" href="tel:+79853645518">
+          +7 (985)364-55-18
+        </a>
+        <a class="footer__tel" href="tel:+79852262030">
+          +7 (985)226-20-30
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+

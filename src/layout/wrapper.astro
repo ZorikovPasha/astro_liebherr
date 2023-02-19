@@ -1,0 +1,22 @@
+---
+import Footer from '../components/layout/footer.astro';
+import Head from '../components/layout/Head.astro'
+
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<html lang="ru">
+  <Head 
+    title={title} 
+    description={description} 
+  />
+  <body>
+    <slot />
+    <Footer />
+  </body>
+</html>

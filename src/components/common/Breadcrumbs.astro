@@ -1,0 +1,27 @@
+---
+import { breadCrumbsItemType } from '../../types/dataTypes'
+
+interface Props {
+  items: breadCrumbsItemType[]
+}
+
+const items = Astro.props.items
+---
+
+<div class="breadcrumbs">
+  <div class="container">
+    <ul class="breadcrumbs__list">
+      {items?.map(({ link, text }, idx) => 
+        <li class="breadcrumbs__item rel">
+          {idx !== items.length - 1 
+            ? <a class="breadcrumbs__link" href={link}>
+                {text}
+              </a>
+            : <span class="breadcrumbs__link">{text}</span>
+          }
+        </li>
+        )}
+    </ul>
+  </div>
+</div>
+
