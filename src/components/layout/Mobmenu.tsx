@@ -1,8 +1,7 @@
-import { MouseEventHandler } from 'react'
 import { ROUTES } from '../../utils/const'
 
 interface IMobMenuProps {
-  handleMobMennuCloseClick: MouseEventHandler<HTMLButtonElement | HTMLLIElement>
+  handleMobMennuCloseClick: React.MouseEventHandler<HTMLButtonElement | HTMLLIElement>
   isMobMenuOpen: boolean
   isMenuBodyOpened: boolean
 }
@@ -22,8 +21,8 @@ const MobMenu: React.FC<IMobMenuProps> = ({
     { link: ROUTES.CONTACTS, text: 'Контакты' },
   ]
 
-  return (
-    <div className={`mob-menu ${isMobMenuOpen ? 'opened' : ''}`}>
+  return isMobMenuOpen ? (
+    <div className="mob-menu opened">
       <div className={`mob-menu__body ${isMenuBodyOpened ? 'opened' : ''}`}>
         <button 
           className="mob-menu__close" 
@@ -50,7 +49,7 @@ const MobMenu: React.FC<IMobMenuProps> = ({
         </ul>
       </div>
     </div>
-  )
+  ) : null
 }
 
 export default MobMenu

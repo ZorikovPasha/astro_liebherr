@@ -39,7 +39,7 @@ const Items: React.FC<IBlogProps> = ({ items, hasMore }) => {
               id={id} 
               title={title} 
               subtitle={subtitle} 
-              preview={preview} 
+              preview={preview.replace("/static", "")} 
             />
           )}
         </div>

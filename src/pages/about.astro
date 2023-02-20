@@ -1,16 +1,60 @@
 ---
 import { ROUTES } from '../utils/const'
 import BreadCrumbs from '../components/common/Breadcrumbs.astro'
-import ReviewsCards from '../components/pages/about/ReviewsCards'
-import { ContactsForm } from '../components/common/ContactsForm'
+import ReviewsCards from '../components/pages/about/reviews-cards.astro'
+import ContactsForm from '../components/common/ContactsForm.astro'
 import { VideoPic } from '../components/pages/about/Video'
-import { costsItems, servicesItems } from './index.astro'
+// import { costsItems, servicesItems } from './index.astro'
 import Wrapper from '../layout/wrapper.astro'
 
 const breadCrumbs = [
   { id: 1, link: ROUTES.HOME, text: 'Главная' },
   { id: 2, link: '', text: 'О компании' },
 ]
+
+export const costsItems = [
+  {
+    imgSrc: '/images/cost-1.png',
+    text: 'Стоимость аренды крана определяется так: 8 (восемь) часов работы каждой единицы спецтехники в течение смены.',
+  },
+  {
+    imgSrc: '/images/cost-2.png',
+    text: 'География доставки спецтехники – вся территория РФ и страны СНГ.',
+  },
+  {
+    imgSrc: '/images/cost-3.png',
+    text: 'Стоимость мобилизации и демобилизации за МКАД и на территорию в границах ТТК обговаривается индивидуально и требует дополнительной оплаты.',
+  },
+  {
+    imgSrc: '/images/cost-4.png',
+    text: 'Обозначенная в прайс-листе стоимость услуг включает НДС – 20 %.',
+  },
+]
+
+export const servicesItems = [
+  {
+    text: 'Аренда мобильных автокранов Liebherr',
+    imgSrc: '/images/services/1.png',
+  },
+  {
+    text: 'Аренда гусеничных кранов Liebherr',
+    imgSrc: '/images/services/2.png',
+  },
+  {
+    text: 'Аренда низкорамных тралов',
+    imgSrc: '/images/services/3.png',
+  },
+  {
+    text: 'Перевозка негабаритного и тяжеловесного груза',
+    imgSrc: '/images/services/4.png',
+  },
+  { text: 'Разработка ППРК', imgSrc: '/images/services/5.png' },
+  {
+    text: 'Выезд специалиста на объект',
+    imgSrc: '/images/services/6.png',
+  },
+]
+
 ---
 
 <Wrapper 
@@ -47,7 +91,7 @@ const breadCrumbs = [
           </div>
         </div>
 
-        <VideoPic />
+        <VideoPic client:load />
       </div>
     </section>
 
@@ -76,14 +120,14 @@ const breadCrumbs = [
         <div class="cost__inner">
           <h2 class="cost__title">Из чего складывается стоимость аренды</h2>
           <div class="cost__items flex jcsb">
-            {costsItems.map(({ imgSrc, text }, idx) => (
+            {costsItems.map(({ imgSrc, text }, idx) => 
               <div class="cost__item">
                 <p class={`cost__item-num cost__item-num--${idx + 1}`}>
                   <img src={imgSrc} alt="cost" />
                 </p>
                 <p class="cost__item-text">{text}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
@@ -159,7 +203,9 @@ const breadCrumbs = [
             </div>
           </div>
 
-          <ContactsForm />
+          <div>
+            <ContactsForm />
+          </div>
         </div>
 
         <p class="contacts__sub contacts__sub--margin">Как добраться:</p>

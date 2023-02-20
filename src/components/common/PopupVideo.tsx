@@ -10,7 +10,7 @@ const PopupVideo: React.FC<IPopupMessageProps> = ({ videoId, onClose }) => {
     <div className="popup">
       <div className="popup__body popup__body--video">
         <button className="popup__close" onClick={onClose}>
-          <img src="/static/images/close.svg" alt="close icon" />
+          <img src="/images/close.svg" alt="close icon" />
         </button>
         <div className="popup__video rel">
           <YouTube

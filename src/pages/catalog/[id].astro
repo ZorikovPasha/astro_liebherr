@@ -1,0 +1,86 @@
+---
+import { publicApi } from '../../api'
+import BreadCrumbs from '../../components/common/Breadcrumbs.astro'
+import HelpRequestForm from '../../components/common/HelpRequestForm.astro'
+import ProductTabs from '../../components/pages/product/ProductTabs'
+import ProductView from '../../components/pages/product/ProductView'
+import SimilarOnesSlider from '../../components/pages/product/SimilarOnesSlider'
+import { ROUTES } from '../../utils/const'
+import Wrapper from "../../layout/wrapper.astro";
+import { MachineryType } from '../../types/dataTypes'
+
+interface Item {
+  machinery: MachineryType;
+  similarOnes: MachineryType[];
+}
+
+export async function getStaticPaths() {
+  const arr: Item[] = []
+
+  async function func () {
+    const data = await publicApi.getMachinery("")
+
+    for (const c in data.items) {
+      const dto = await publicApi.getSingleMachinery(data.items[c].id)
+      arr.push(dto)
+    }
+  }  
+
+  await func()
+
+  return arr.map(item => ({ 
+    params: { id: item.machinery.id },
+    props: { machinery: item.machinery, similarOnes: item.similarOnes }
+  }))
+}
+
+const { machinery, similarOnes } = Astro.props
+
+const breadCrumbs = [
+  { id: 1, link: ROUTES.HOME, text: 'Главная' },
+  { id: 2, link: ROUTES.CATALOG, text: 'Каталог техники' },
+  { id: 3, link: '', text: machinery.name ?? 'Страница товара' },
+]
+---
+<Wrapper 
+  title={machinery.name}
+  description="Блог строительной компании Liebherr"
+>
+  <BreadCrumbs items={breadCrumbs} />
+  <ProductView client:load info={machinery} />
+
+  <ProductTabs />
+
+  <section class="product-text block-text">
+    <div class="container">
+      <h2 class="block-text__title">Заголовок</h2>
+      <p class="block-text__text">Гусеничный кран LR 1750 находит свое применение в строительстве электростанций, нефтеперерабатывающих заводов, на строительных площадках мостов и при монтаже ветросиловых установок.</p>
+      <p class="block-text__text">
+        Эта 750-тонная машина имеет универсальное применение со своей 140-метровой основной стрелой, 105-метровым управляемым удлинителем стрелы, 21-метровым монтажным удлинителем, деррик-оборудованием и 400-тонным подвесным противовесом или
+        балластировочной тележкой.
+      </p>
+      <p class="block-text__text">Компактные габариты компонентов подъемного крана и их умеренный индивидуальный вес позволяют обеспечить экономичную транспортировку этого подъемного крана к строительной площадке.</p>
+      <p class="block-text__text">Этот 750-тонный кран может также использоваться с выдвижными опорами, имеющими опорную базу 13 x 13 м. Результирующая грузоподъемность в этом случае может быть увеличена до 370 %.</p>
+      <p class="block-text__text">Гусеничный кран LR 1750 находит свое применение в строительстве электростанций, нефтеперерабатывающих заводов, на строительных площадках мостов и при монтаже ветросиловых установок.</p>
+      <p class="block-text__text">
+        Эта 750-тонная машина имеет универсальное применение со своей 140-метровой основной стрелой, 105-метровым управляемым удлинителем стрелы, 21-метровым монтажным удлинителем, деррик-оборудованием и 400-тонным подвесным противовесом или
+        балластировочной тележкой.
+      </p>
+      <p class="block-text__text">Компактные габариты компонентов подъемного крана и их умеренный индивидуальный вес позволяют обеспечить экономичную транспортировку этого подъемного крана к строительной площадке.</p>
+      <p class="block-text__text">
+        Этот 750-тонный кран может также использоваться с выдвижными опорами, имеющими опорную базу 13 x 13 м. Результирующая грузоподъемность в этом случае может быть увеличена до 370 %.Гусеничный кран LR 1750 находит свое применение в
+        строительстве электростанций, нефтеперерабатывающих заводов, на строительных площадках мостов и при монтаже ветросиловых установок.
+      </p>
+      <p class="block-text__text">
+        Эта 750-тонная машина имеет универсальное применение со своей 140-метровой основной стрелой, 105-метровым управляемым удлинителем стрелы, 21-метровым монтажным удлинителем, деррик-оборудованием и 400-тонным подвесным противовесом или
+        балластировочной тележкой.
+      </p>
+      <p class="block-text__text">Компактные габариты компонентов подъемного крана и их умеренный индивидуальный вес позволяют обеспечить экономичную транспортировку этого подъемного крана к строительной площадке.</p>
+      <p class="block-text__text">Этот 750-тонный кран может также использоваться с выдвижными опорами, имеющими опорную базу 13 x 13 м. Результирующая грузоподъемность в этом случае может быть увеличена до 370 %.</p>
+    </div>
+  </section>
+
+  <HelpRequestForm />
+
+  <SimilarOnesSlider client:visible items={similarOnes} />
+</Wrapper>

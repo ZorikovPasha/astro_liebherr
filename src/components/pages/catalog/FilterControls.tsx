@@ -1,7 +1,7 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import Select, { ActionMeta, SingleValue } from 'react-select'
-import { setSort } from '../../../store/slices/CatalogFiltersSlice'
+import filtersStore from '../../../store/filters'
+import { useStore } from '@nanostores/react'
 
 interface ICOntrolsProps {
   activeView: 'grid' | 'list'
@@ -21,7 +21,7 @@ type onSortChangeType = (
 ) => void
 
 const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ onAsideOpen, setActiveView, activeView }, asideBtnRef) => {
-  const dispatch = useDispatch()
+  const $filtersStore = useStore(filtersStore)
 
   const onToggleASide = () => {
     onAsideOpen?.current && onAsideOpen.current()
@@ -44,7 +44,10 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
     setActiveSortType(value)
 
     if (value?.value) {
-      dispatch(setSort(value?.value))
+      filtersStore.set({
+        ...$filtersStore, 
+        sort: value.value
+      })
     }
   }
 
@@ -59,25 +62,51 @@ const FilterControls = React.forwardRef<HTMLButtonElement, ICOntrolsProps>(({ on
   return (
     <div className="catalog-content__controls catalog-controls rel flex aic jcsb">
       <div className="catalog-controls__aside-toggle aside-toggle">
-        <button className="aside-toggle__btn" onClick={onToggleASide} ref={asideBtnRef}>
-          <img src="/static/images/aside-toggle.svg" alt="иконка переключатель" />
+        <button 
+          className="aside-toggle__btn" 
+          onClick={onToggleASide} 
+          ref={asideBtnRef}
+        >
+          <img 
+            src="/images/aside-toggle.svg" 
+            alt="toggle" 
+          />
         </button>
       </div>
       <div className="flex aic">
-        <img src="/static/images/sort-icon.svg" alt="" />
-        <Select value={activeSortType} className="catalog-controls__sort-select" options={sortOptions} onChange={onSortTypeChange} />
+        <img 
+          src="/images/sort-icon.svg" 
+          alt="" 
+        />
+        <Select 
+          value={activeSortType} 
+          className="catalog-controls__sort-select" 
+          options={sortOptions} 
+          onChange={onSortTypeChange} 
+        />
       </div>
       <div className="catalog-controls__view view flex aic">
-        <button onClick={onChangeViewGrid} className={`catalog-controls__btn view__btn-grid ${activeView === 'grid' ? 'catalog-controls__btn--active' : ''}`}>
-          <img src="/static/images/view-grid.svg" alt="сетка иконка" />
+        <button 
+          onClick={onChangeViewGrid} 
+          className={`catalog-controls__btn view__btn-grid ${activeView === 'grid' ? 'catalog-controls__btn--active' : ''}`}
+        >
+          <img 
+            src="/images/view-grid.svg" 
+            alt="сетка иконка" 
+          />
         </button>
-        <button onClick={onChangeViewList} className={`catalog-controls__btn view__btn-list ${activeView === 'list' ? 'catalog-controls__btn--active' : ''}`}>
-          <img src="/static/images/view-list.svg" alt="список иконка" />
+        <button 
+          onClick={onChangeViewList} 
+          className={`catalog-controls__btn view__btn-list ${activeView === 'list' ? 'catalog-controls__btn--active' : ''}`}
+        >
+          <img 
+            src="/images/view-list.svg" 
+            alt="список иконка" 
+          />
         </button>
       </div>
     </div>
   )
 })
 
-FilterControls.displayName = 'FilterControls'
 export default FilterControls

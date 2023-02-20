@@ -5,11 +5,13 @@ import AnotherArticlesSlider from '../../components/pages/articles/AnotherArticl
 import BreadCrumbs from '../../components/common/Breadcrumbs.astro'
 import { ROUTES } from '../../utils/const'
 import Wrapper from '../../layout/wrapper.astro'
+import { ArticleType } from '../../types/dataTypes'
 
-type PType = { params: { id: string } }
+interface Props {
+  article: ArticleType
+}
 
-const id = new URLSearchParams(document.location.search).get("id") ?? ""
-const article = await publicApi.getSingleArticle(id)
+const { article } = Astro.props
 
 const { title, images, sections, subtitles } = article
 
@@ -20,11 +22,13 @@ const breadCrumbs = [
 ]
 
 export async function getStaticPaths() {
-  const data = await publicApi.getArticlesIds()
+  const data = await publicApi.getArticles()
 
-  return data.items.reduce(
-    (accum: PType[], next) => ([...accum, { params: { id: next.toString() } }]), 
-    []
+  return data.items.map(
+    item => ({
+      params: { id: item.id },
+      props: { article: item }
+    })
   )
 }
 ---
@@ -33,51 +37,49 @@ export async function getStaticPaths() {
   title={title}
   description="Строительная компания Liebherr"
 >
-  <>
-    <BreadCrumbs items={breadCrumbs} />
-    <section class="article-top">
-      <div class="container">
-        <h1 class="article-top__heading">{title}</h1>
-        <div class="article-top__images flex jcsb">
-          {images?.map((src) => 
-            <div class="article-top__img">
-              <img 
-                src={src} 
-                alt="Строительный кран" 
-              />
-            </div>
-          )}
-        </div>
-        {sections?.map((section, index) => 
-          <div>
-            <h2 class="article-top__title">
-              {subtitles[index]}
-            </h2>
-            {section.map(({ text, isListItem }) =>
-              isListItem 
-                ? <li class="article-top__list-item rel after">
-                  {text}
-                </li>
-                : <p class="article-top__text">
-                  {text}
-                </p>
-            )}
+  <BreadCrumbs items={breadCrumbs} />
+  <section class="article-top">
+    <div class="container">
+      <h1 class="article-top__heading">{title}</h1>
+      <div class="article-top__images flex jcsb">
+        {images?.map((src) => 
+          <div class="article-top__img">
+            <img 
+              src={src.replace("/static", "")} 
+              alt="Строительный кран" 
+            />
           </div>
         )}
       </div>
-    </section>
-
-    <AnotherArticlesSlider currentArticle={article.id} />
-
-    <div class="map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1538.59309082283!2d37.5659100109784!3d55.57353554252417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aada349fa0335%3A0x664f1a375fe7ab8a!2z0JrRg9C70LjQutC-0LLRgdC60LDRjyDRg9C7Liwg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1630922368972!5m2!1sru!2sru"
-        width="100%"
-        height="548"
-        style={{ border: 0 }}
-        allowfullscreen
-        loading="lazy"
-      />
+      {sections?.map((section, index) => 
+        <div>
+          <h2 class="article-top__title">
+            {subtitles[index]}
+          </h2>
+          {section.map(({ text, isListItem }) =>
+            isListItem 
+              ? <li class="article-top__list-item rel after">
+                {text}
+              </li>
+              : <p class="article-top__text">
+                {text}
+              </p>
+          )}
+        </div>
+      )}
     </div>
-  </>
+  </section>
+
+  <AnotherArticlesSlider currentArticle={article.id} />
+
+  <div class="map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1538.59309082283!2d37.5659100109784!3d55.57353554252417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aada349fa0335%3A0x664f1a375fe7ab8a!2z0JrRg9C70LjQutC-0LLRgdC60LDRjyDRg9C7Liwg0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1630922368972!5m2!1sru!2sru"
+      width="100%"
+      height="548"
+      style={{ border: 0 }}
+      allowfullscreen
+      loading="lazy"
+    />
+  </div>
 </Wrapper>

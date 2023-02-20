@@ -40,7 +40,7 @@ const settings = {
     >
       {articles?.map(({ id, title, subtitle, preview }) => 
         <ArticleCard 
-          preview={preview} 
+          preview={preview.replace("/static", "")} 
           title={title} 
           subtitle={subtitle} 
           id={id} 

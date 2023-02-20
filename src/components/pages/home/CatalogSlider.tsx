@@ -1,13 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
 import CatalogCard from '../catalog/CatalogCard'
-import { selectProducts } from '../../../store/selectors'
 import { ROUTES } from '../../../utils/const'
 import AppSlider from '../../common/AppSlider'
+import { useStore } from '@nanostores/react'
+import productsStore from '../../../store/products'
 
 const CatalogSlider: React.FC = () => {
-  const items = useSelector(selectProducts)
+  const $productsStore = useStore(productsStore)
 
   const settings = {
     arrows: true,
@@ -28,9 +28,9 @@ const CatalogSlider: React.FC = () => {
           <AppSlider 
             rootElClass='catalog-slider'
             settings={settings}
-            count={items.length}
+            count={$productsStore.items.length}
           >
-            {items?.map(({ id, name, imgSrc, features }) => 
+            {$productsStore.items?.map(({ id, name, imgSrc, features }) => 
               <CatalogCard 
                 key={id} 
                 id={id} 
@@ -48,7 +48,7 @@ const CatalogSlider: React.FC = () => {
             className="catalog__btn btn-line btn-line--orange" 
             href={ROUTES.CATALOG}
           >
-            <a>Перейти в каталог</a>
+            Перейти в каталог
           </a>
         </div>
       </div>

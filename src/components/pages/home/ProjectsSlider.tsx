@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 import Slider, { Settings } from 'react-slick'
 
@@ -73,41 +71,60 @@ const ProjectsSlider: React.FC<ISliderProps> = ({ items }) => {
           </div>
 
           <div className="projects-nav-wrapper">
-            <Slider {...projectsThumbsSettings} className="projects-nav" asNavFor={projectsSliderNav} ref={(slider1: Slider) => setThumbsNav(slider1)}>
-              {previews?.map((src, idx) => (
+            <Slider 
+              {...projectsThumbsSettings} 
+              className="projects-nav" 
+              asNavFor={projectsSliderNav} 
+              ref={(slider1: Slider) => setThumbsNav(slider1)}
+            >
+              {previews?.map((src, idx) => 
                 <div className="projects-nav__item" key={src + idx}>
                   <div className="projects-nav__img-wrapper">
                     <div className="projects-nav__img">
-                      <Image src={src} layout="fill" alt="Стройка с использованием кранов" />
+                      <img 
+                        src={src.replace("/static", "")} 
+                        alt="Стройка с использованием кранов" 
+                      />
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </Slider>
             <div className="projects-nav__line"></div>
           </div>
 
           <div className="projects-slider-wrapper">
-            <Slider {...ProjectSliderSettings} className="projects-slider" asNavFor={thumbsNav} ref={(slider2: Slider) => setProjectsSliderNav(slider2)}>
-              {items?.map(({ title, location, text, id, preview }) => (
+            <Slider 
+              {...ProjectSliderSettings} 
+              className="projects-slider" 
+              asNavFor={thumbsNav} 
+              ref={(slider2: Slider) => setProjectsSliderNav(slider2)}
+            >
+              {items?.map(({ title, location, text, id, preview }) => 
                 <div className="projects-slider__item" key={id}>
                   <div className="projects-slider__inner flex">
                     <div className="projects-slider__images">
                       <div className="projects-slider__img">
-                        <Image src={preview} layout="fill" alt="Стройка с использованием кранов" />
+                        <img 
+                          src={preview.replace("/static", "")} 
+                          alt="Стройка с использованием кранов" 
+                        />
                       </div>
                     </div>
                     <div className="projects-slider__info">
                       <p className="projects-slider__item-title">{title}</p>
                       <p className="projects-slider__item-location rel after">{location}</p>
                       <p className="projects-slider__item-text">{text}</p>
-                      <Link href={ROUTES.OBJECTS + id}>
-                        <a className="projects-slider__item-link rel after">Подробнее</a>
-                      </Link>
+                      <a 
+                        className="projects-slider__item-link rel after"
+                        href={ROUTES.OBJECTS + id}
+                      >
+                        Подробнее
+                      </a>
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </Slider>
           </div>
         </div>

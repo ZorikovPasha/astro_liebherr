@@ -75,7 +75,7 @@ const PopupRequest: React.FC = () => {
           onClick={onClose}
         >
           <img 
-            src="/static/images/close.svg" 
+            src="/images/close.svg" 
             alt="close" 
             width={24} 
             height={24} 

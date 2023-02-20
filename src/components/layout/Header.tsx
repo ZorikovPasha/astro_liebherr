@@ -36,7 +36,7 @@ const Header: React.FC<IHeaderProps> = ({ handleMobMennuButtonClick }) => {
           <div className="header__top-inner flex aic jcsb">
             <div className="header__about flex aic jcsb">
               <a className="header__logo" href={ROUTES.HOME}>
-                <img className="header__logo-img" src="/static/images/logo.svg" alt="Логотип компани" />
+                <img className="header__logo-img" src="/images/logo.svg" alt="Логотип компани" />
               </a>
               <p className="header__about-text">Аренда спецтехники LIEBHERR c 2000 года</p>
             </div>
@@ -68,7 +68,11 @@ const Header: React.FC<IHeaderProps> = ({ handleMobMennuButtonClick }) => {
       <div className="header__bottom">
         <div className="container">
           <div className="header__bottom-inner rel flex aic jcsb">
-            <button className="menu-btn" aria-label="open mobile menu" onClick={handleMobMennuButtonClick}>
+            <button 
+              className="menu-btn" 
+              aria-label="open mobile menu" 
+              onClick={handleMobMennuButtonClick}
+            >
               <div className="menu-btn__line"></div>
               <div className="menu-btn__line"></div>
               <div className="menu-btn__line"></div>

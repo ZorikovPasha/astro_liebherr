@@ -231,7 +231,7 @@ const QuestionsForm: React.FC = () => {
         </div>
         <div className="questions__images">
           <img 
-            src="/static/images/questions-aside.png" 
+            src="/images/questions-aside.png" 
             alt="product" 
           />
         </div>

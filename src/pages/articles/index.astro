@@ -23,6 +23,7 @@ const { items, hasMore } = await publicApi.getArticles(1)
       <div class="container">
         <h1 class="blog__title">СТАТЬИ О СПЕЦТЕХНИКЕ</h1>
         <Items 
+          client:load
           items={items} 
           hasMore={hasMore} 
         />

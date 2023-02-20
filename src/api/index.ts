@@ -74,7 +74,7 @@ class PublicApi extends Api {
     return this.get<{ items: number[] }>('/api/constructions/ids')
   }
 
-  getArticles = (portionIdx: number) => {
+  getArticles = (portionIdx=1) => {
     return this.get<{ items: ArticleType[]; hasMore: boolean }>('/api/articles?chunk=' + portionIdx)
   }
 

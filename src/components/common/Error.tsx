@@ -4,7 +4,7 @@ const Error = () => {
       <div className="error__images flex">
         <img 
           className="error__img" 
-          src="static/images/error.jpg" 
+          src="/images/error.jpg" 
           alt="error" 
         />
       </div>

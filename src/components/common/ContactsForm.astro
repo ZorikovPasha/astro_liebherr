@@ -1,6 +1,6 @@
 ---
 import { REGEX } from '../../utils/const'
-import { AppForm } from './app-form'
+import { AppForm } from '../common/AppForm'
 
 const fields = {
     fields: {
@@ -60,7 +60,7 @@ const fields = {
 ---
 
 <AppForm 
-  client:visible
+  client:only
   formClass="popup__form" 
   fields={fields} 
   buttonClass="popup__btn btn" 

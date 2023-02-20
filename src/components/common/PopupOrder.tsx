@@ -65,7 +65,7 @@ const PopupOrder = () => {
           onClick={onClose}
         >
           <img 
-            src="/static/images/close.svg" 
+            src="/images/close.svg" 
             alt="close icon" 
           />
         </button>

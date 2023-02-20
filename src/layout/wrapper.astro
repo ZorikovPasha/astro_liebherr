@@ -1,6 +1,15 @@
 ---
 import Footer from '../components/layout/footer.astro';
 import Head from '../components/layout/Head.astro'
+import PopupRequest from '../components/common/Popup';
+import PopupSuccess from '../components/common/PopupSuccess';
+import PopupError from '../components/common/PopupError';
+import Loader from '../components/common/Loader';
+
+import 'rc-slider/assets/index.css';
+import "slick-carousel/slick/slick.css"; 
+import "../styles/style.scss"
+import Menus from '.';
 
 interface Props {
   title: string
@@ -16,7 +25,19 @@ const { title, description } = Astro.props
     description={description} 
   />
   <body>
-    <slot />
+    <Menus client:load />
+    <main class="main">
+      <slot />
+      <PopupRequest client:load />
+      <PopupSuccess
+        client:load 
+        title="Заявка отправлена" 
+        text="Мы вам перезвоним в ближайшее время" 
+        buttonText="Закрыть"
+      />
+      <PopupError client:load />
+      <Loader client:load />
+    </main>
     <Footer />
   </body>
 </html>

@@ -42,13 +42,13 @@ const ProductTabs: React.FC = () => {
 
               <div className="item-content__images">
                 <div className="item-content__img">
-                  <img src="/static/images/depict-1.jpg" alt="" width="100%" height="100%" />
+                  <img src="/images/depict-1.jpg" alt="" width="100%" height="100%" />
                 </div>
                 <div className="item-content__img">
-                  <img src="/static/images/depict-2.jpg" alt="" width="100%" height="100%" />
+                  <img src="/images/depict-2.jpg" alt="" width="100%" height="100%" />
                 </div>
                 <div className="item-content__img">
-                  <img src="/static/images/depict-3.jpg" alt="" width="100%" height="100%" />
+                  <img src="/images/depict-3.jpg" alt="" width="100%" height="100%" />
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@ const ProductTabs: React.FC = () => {
               <div className="item-specs__box flex jcsb">
                 <div className="item-specs__item">
                   <div className="item-specs__images">
-                    <img className="guarantee__item-img" src="/static/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
+                    <img className="guarantee__item-img" src="/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
                   </div>
                   <a className="item-specs__link" href="#">
                     скачать
@@ -78,7 +78,7 @@ const ProductTabs: React.FC = () => {
                 </div>
                 <div className="item-specs__item">
                   <div className="item-specs__images">
-                    <img src="/static/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
+                    <img src="/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
                   </div>
                   <a className="item-specs__link" href="#">
                     скачать
@@ -86,7 +86,7 @@ const ProductTabs: React.FC = () => {
                 </div>
                 <div className="item-specs__item">
                   <div className="item-specs__images">
-                    <img src="/static/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
+                    <img src="/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
                   </div>
                   <a className="item-specs__link" href="#">
                     скачать
@@ -94,7 +94,7 @@ const ProductTabs: React.FC = () => {
                 </div>
                 <div className="item-specs__item">
                   <div className="item-specs__images">
-                    <img src="/static/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
+                    <img src="/images/specifications/1.jpg" alt="Спецификация" width="100%" height="100%" />
                   </div>
                   <a className="item-specs__link" href="#">
                     скачать

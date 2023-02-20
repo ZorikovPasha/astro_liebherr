@@ -27,7 +27,7 @@ export const VideoPic = () => {
           </button>
         </div>
         <div className="about__images">
-          <img src="/static/images/about-big.jpg" />
+          <img src="/images/about-big.jpg" />
         </div>
       </div>
 

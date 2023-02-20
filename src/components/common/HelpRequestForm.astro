@@ -1,5 +1,5 @@
 ---
-import { AppForm } from './app-form'
+import { AppForm } from './AppForm'
 
   const fields = {
     fields: {
@@ -37,7 +37,8 @@ import { AppForm } from './app-form'
   <div class="help__container">
     <div class="container">
       <h2 class="help__title">Нужна помощь в подборе?</h2>
-      <AppForm 
+      <AppForm
+        client:only
         formClass="help__form" 
         fields={fields} 
         buttonClass="help__form-btn btn" 
@@ -46,7 +47,7 @@ import { AppForm } from './app-form'
       />
     </div>
     <div class="help__images">
-      <img src="/static/images/form-bg.png" />
+      <img src="/images/form-bg.png" />
     </div>
   </div>
 </div>

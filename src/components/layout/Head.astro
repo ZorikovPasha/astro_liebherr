@@ -4,7 +4,6 @@ const { title, description } = Astro.props;
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width" />
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -34,4 +33,17 @@ const { title, description } = Astro.props;
   <!-- <meta name="twitter:image" content={image?.src || siteData.image.src} /> -->
   <meta name="twitter:image:alt" content={title} />
   <meta name="twitter:domain" content={import.meta.env.SITE} />
+
+
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="Строительная техника, краны, машины" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=PT+Sans:wght@700&&display=swap" rel="stylesheet" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
 </head>
